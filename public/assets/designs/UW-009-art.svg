@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0d0a"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ff2a4b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Industrial Framing & Grid Lines -->
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.12"/>
+  <rect x="52" y="52" width="696" height="896" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.08"/>
+  
+  <!-- Corner Crosshairs -->
+  <path d="M 40 70 L 40 40 L 70 40 M 730 40 L 760 40 L 760 70 M 40 930 L 40 960 L 70 960 M 730 960 L 760 960 L 760 930" fill="none" stroke="#ff2a4b" stroke-width="2" opacity="0.8"/>
+
+  <!-- Top Metadata Bar -->
+  <text x="70" y="85" font-family="'JetBrains Mono', 'Space Grotesk', monospace" font-size="16" font-weight="700" fill="#ff2a4b" letter-spacing="3">UW-009</text>
+  <text x="730" y="85" font-family="'JetBrains Mono', monospace" font-size="14" fill="#a1a1aa" text-anchor="end" letter-spacing="2">MINIMAL</text>
+
+  <!-- Central Graphic Motif -->
+  
+      <g opacity="0.85">
+        <circle cx="400" cy="460" r="160" stroke="#ff2a4b" stroke-width="2.5" fill="none" stroke-dasharray="8 6"/>
+        <line x1="200" y1="460" x2="600" y2="460" stroke="#ff2a4b" stroke-width="1.5" opacity="0.4"/>
+        <line x1="400" y1="260" x2="400" y2="660" stroke="#ff2a4b" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="400" cy="460" r="28" fill="#ff2a4b"/>
+        <rect x="360" y="420" width="80" height="80" stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </g>
+    
+
+  <!-- Main Typographic Name -->
+  <g transform="translate(400, 720)">
+    <text x="0" y="0" font-family="'Space Grotesk', 'Syncopate', sans-serif" font-weight="900" font-size="56" fill="url(#textGrad)" text-anchor="middle" letter-spacing="3">BINARY CODE</text>
+    <text x="0" y="42" font-family="'JetBrains Mono', monospace" font-size="15" fill="#a1a1aa" text-anchor="middle" letter-spacing="4">DECODE HUMANITY // SYS_EXECUTE</text>
+  </g>
+
+  <!-- Industrial Barcode & Bottom Signature -->
+  <rect x="260" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="270" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="280" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="290" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="300" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="310" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="320" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="330" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="340" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="350" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="360" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="370" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="380" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="390" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="400" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="410" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="420" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="430" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="440" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="450" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="460" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="470" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="480" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="490" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="500" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="510" y="820" width="1" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="520" y="820" width="2" height="45" fill="#ff2a4b" opacity="0.75"/>
+<rect x="530" y="820" width="4" height="45" fill="#ff2a4b" opacity="0.75"/>
+  <text x="400" y="890" font-family="'JetBrains Mono', monospace" font-size="13" fill="#ff2a4b" text-anchor="middle" letter-spacing="6">UNCOMMON weaR // UW-009</text>
+  <text x="400" y="930" font-family="'Inter', sans-serif" font-size="12" fill="#71717a" text-anchor="middle" letter-spacing="2">CREATED BY YOU. CRAFTED BY US.</text>
+</svg>

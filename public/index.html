@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>UNCommon weaR — Digital Design Catalogue</title>
+  <meta name="description" content="Official digital design catalogue for UNCommon weaR physical printing cart. Browse 100+ creative T-shirt designs, pick your code, and get it printed.">
+  <meta name="theme-color" content="#09090b">
+
+  <!-- Google Fonts: Syncopate, Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation & Search Bar -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      
+      <!-- Brand & Compact Subtext -->
+      <div class="brand-row">
+        <a href="/designs" class="brand-logo" id="brandLogo">
+          <span class="brand-text">UN<span class="brand-accent">Common</span> weaR</span>
+        </a>
+        <div class="cart-status-badge">
+          <span class="live-dot"></span>
+          <span class="status-label">CART PRINTING READY</span>
+        </div>
+      </div>
+
+      <!-- Compact Taglines Section -->
+      <div class="compact-manifesto">
+        <p class="tagline">“Created by you. Crafted by us.”</p>
+        <p class="subline">Find something that feels like you.</p>
+      </div>
+
+      <!-- Immediate Search Bar & Quick Controls -->
+      <div class="search-section">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="search" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search designs, codes (e.g. UW-047), introvert, quotes..." 
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search" style="display: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <button class="filter-trigger-btn" id="filterTriggerBtn" aria-label="Open filters">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          <span class="filter-btn-text">Filters</span>
+          <span class="active-filter-badge" id="activeFilterBadge" style="display: none;">0</span>
+        </button>
+      </div>
+
+      <!-- Horizontal Scrollable Category Chips -->
+      <nav class="categories-nav" id="categoriesNav" aria-label="Categories">
+        <div class="categories-track" id="categoriesTrack">
+          <!-- Dynamically populated or seeded chips -->
+          <button class="category-chip active" data-category="ALL">ALL</button>
+          <button class="category-chip" data-category="MINIMAL">MINIMAL</button>
+          <button class="category-chip" data-category="QUOTES">QUOTES</button>
+          <button class="category-chip" data-category="FUNNY">FUNNY</button>
+          <button class="category-chip" data-category="COLLEGE">COLLEGE</button>
+          <button class="category-chip" data-category="GEN-Z">GEN-Z</button>
+          <button class="category-chip" data-category="GRAPHIC">GRAPHIC</button>
+          <button class="category-chip" data-category="STREET">STREET</button>
+          <button class="category-chip" data-category="AESTHETIC">AESTHETIC</button>
+          <button class="category-chip" data-category="MOTIVATION">MOTIVATION</button>
+          <button class="category-chip" data-category="OTHERS">OTHERS</button>
+        </div>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main class="main-content">
+    
+    <!-- Active Filter Status & Fast Sort Bar -->
+    <div class="status-bar-wrapper">
+      <div class="results-count-container">
+        <span class="results-count" id="resultsCount">Loading catalogue...</span>
+        <div class="active-chips-container" id="activeChipsContainer"></div>
+      </div>
+
+      <div class="sort-selector-wrapper">
+        <label for="sortSelect" class="sort-label">Sort:</label>
+        <select id="sortSelect" class="sort-select">
+          <option value="featured">Featured First</option>
+          <option value="popular">Most Popular</option>
+          <option value="newest">Newest Drops</option>
+          <option value="code">Design Code (UW-001)</option>
+          <option value="az">Name (A-Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Editorial Gallery Grid (2-column on mobile, responsive multi-column on desktop) -->
+    <section class="gallery-section">
+      <div class="designs-grid" id="designsGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Loading Indicator / Skeleton -->
+      <div class="grid-loader" id="gridLoader">
+        <div class="spinner"></div>
+        <span>Curating designs...</span>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </div>
+        <h3 class="empty-title">No matching designs found</h3>
+        <p class="empty-subtitle">Try a different search word, category, or clear your filters.</p>
+        <button class="btn btn-outline" id="resetFiltersBtn">Reset All Filters</button>
+      </div>
+
+      <!-- Infinite Scroll Trigger Element -->
+      <div id="infiniteScrollSentinel" class="sentinel"></div>
+    </section>
+
+  </main>
+
+  <!-- Filter & Sort Bottom Sheet Drawer -->
+  <div class="filter-drawer-overlay" id="filterDrawerOverlay">
+    <div class="filter-drawer" id="filterDrawer" role="dialog" aria-modal="true">
+      <div class="drawer-header">
+        <div class="drawer-drag-handle"></div>
+        <div class="drawer-title-row">
+          <h2 class="drawer-title">Filter & Refine</h2>
+          <button class="drawer-close-btn" id="closeDrawerBtn" aria-label="Close filters">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="drawer-body">
+        
+        <!-- Style Filter -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Style</h4>
+          <div class="filter-options-grid" id="styleOptions">
+            <!-- Dynamic style pills -->
+          </div>
+        </div>
+
+        <!-- Mood Filter -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Mood & Vibe</h4>
+          <div class="filter-options-grid" id="moodOptions">
+            <!-- Dynamic mood pills -->
+          </div>
+        </div>
+
+        <!-- Color Palette -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Color Tone</h4>
+          <div class="filter-options-grid" id="colorOptions">
+            <!-- Dynamic color pills -->
+          </div>
+        </div>
+
+        <!-- Trending Tags -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Popular Tags</h4>
+          <div class="filter-tags-cloud" id="tagOptions">
+            <!-- Dynamic tags -->
+          </div>
+        </div>
+
+      </div>
+
+      <div class="drawer-footer">
+        <button class="btn btn-ghost" id="clearAllFiltersBtn">Clear All</button>
+        <button class="btn btn-primary" id="applyFiltersBtn">Show Designs</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Detail Modal (Immersive Full-Screen / Sheet View) -->
+  <div class="detail-modal-overlay" id="detailModalOverlay">
+    <div class="detail-modal" id="detailModal" role="dialog" aria-modal="true">
+      
+      <!-- Top Modal Navigation -->
+      <div class="modal-top-bar">
+        <button class="modal-back-btn" id="modalCloseBtn" aria-label="Back to gallery">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>CLOSE</span>
+        </button>
+
+        <div class="modal-actions-right">
+          <button class="modal-nav-arrow" id="prevDesignBtn" aria-label="Previous design">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="modal-nav-arrow" id="nextDesignBtn" aria-label="Next design">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <button class="share-btn" id="shareDesignBtn" aria-label="Share design">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Left / Top: Visual Artwork & Mockup Container -->
+        <div class="modal-visual-container">
+          <div class="visual-viewport">
+            <img id="modalImage" class="modal-hero-img" src="" alt="Design Preview">
+          </div>
+
+          <!-- Artwork / T-Shirt Mockup Toggle -->
+          <div class="view-toggle-bar">
+            <button class="view-toggle-btn active" id="viewArtworkBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <span>Artwork</span>
+            </button>
+            <button class="view-toggle-btn" id="viewMockupBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
+              </svg>
+              <span>On Oversized Tee</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right / Bottom: Design Metadata & Cart Order Flasher -->
+        <div class="modal-info-container">
+          
+          <!-- Category and Badges -->
+          <div class="modal-badges-row">
+            <span class="design-cat-badge" id="modalCategory">GEN-Z</span>
+            <span class="design-style-badge" id="modalStyle">Modern</span>
+            <span class="design-mood-badge" id="modalMood">Aesthetic</span>
+          </div>
+
+          <!-- Title & Code -->
+          <h1 class="modal-design-title" id="modalName">INTROVERT MODE</h1>
+          
+          <!-- "SHOW TO TEAM" Giant Card Mode -->
+          <div class="cart-team-card">
+            <div class="card-prompt-label">
+              <span class="prompt-icon">⚡</span>
+              <span>LIKE THIS ONE? SHOW THIS CODE TO OUR CART TEAM:</span>
+            </div>
+            
+            <div class="giant-code-display" id="modalCodeDisplay">
+              <span class="giant-code-text" id="modalCode">UW-047</span>
+              <span class="live-print-pill">READY TO PRINT</span>
+            </div>
+
+            <!-- Big Tactile Copy Button -->
+            <button class="copy-code-big-btn" id="copyCodeBigBtn">
+              <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+              </svg>
+              <span class="copy-btn-label" id="copyBtnLabel">COPY DESIGN CODE</span>
+            </button>
+            <p class="copy-instruction">Tap to copy, or simply hold your screen up to our printing crew.</p>
+          </div>
+
+          <!-- Description -->
+          <div class="modal-description-box">
+            <h4 class="meta-heading">About This Design</h4>
+            <p class="modal-description-text" id="modalDescription">High-contrast graphic artwork.</p>
+          </div>
+
+          <!-- Tags -->
+          <div class="modal-tags-box">
+            <h4 class="meta-heading">Tags</h4>
+            <div class="modal-tags-list" id="modalTagsList"></div>
+          </div>
+
+          <!-- Print Guarantee Notice -->
+          <div class="print-spec-notice">
+            <div class="spec-item">
+              <span class="spec-label">Print Quality</span>
+              <span class="spec-val">High-Density Screen / DTF</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Garment</span>
+              <span class="spec-val">240 GSM Pure Combed Cotton</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Fit</span>
+              <span class="spec-val">Oversized Streetwear Drop-Shoulder</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Minimal Brand Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2 class="footer-brand-title">UNCommon weaR</h2>
+        <p class="footer-tagline">“Created by you. Crafted by us.”</p>
+        <p class="footer-subline">Find something that feels like you.</p>
+      </div>
+
+      <div class="footer-actions">
+        <a href="https://instagram.com/uncommonwear.official" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>@uncommonwear.official</span>
+        </a>
+
+        <div class="cart-staff-discreet">
+          <a href="/admin" class="staff-login-link" title="Cart Team Admin Portal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0110 0v4"></path>
+            </svg>
+            <span>Staff Portal</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 UNCommon weaR. Digital Design Catalogue for Physical Printing Carts. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1118"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#93c5fd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Industrial Framing & Grid Lines -->
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.12"/>
+  <rect x="52" y="52" width="696" height="896" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.08"/>
+  
+  <!-- Corner Crosshairs -->
+  <path d="M 40 70 L 40 40 L 70 40 M 730 40 L 760 40 L 760 70 M 40 930 L 40 960 L 70 960 M 730 960 L 760 960 L 760 930" fill="none" stroke="#93c5fd" stroke-width="2" opacity="0.8"/>
+
+  <!-- Top Metadata Bar -->
+  <text x="70" y="85" font-family="'JetBrains Mono', 'Space Grotesk', monospace" font-size="16" font-weight="700" fill="#93c5fd" letter-spacing="3">UW-034</text>
+  <text x="730" y="85" font-family="'JetBrains Mono', monospace" font-size="14" fill="#a1a1aa" text-anchor="end" letter-spacing="2">COLLEGE</text>
+
+  <!-- Central Graphic Motif -->
+  
+      <g>
+        <path d="M 400 280 C 520 280 580 340 580 440 C 580 540 480 620 400 640 C 320 620 220 540 220 440 C 220 340 280 280 400 280 Z" fill="none" stroke="#93c5fd" stroke-width="4"/>
+        <path d="M 400 300 C 500 300 550 350 550 435 C 550 520 470 590 400 615 C 330 590 250 520 250 435 C 250 350 300 300 400 300 Z" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/>
+        <text x="400" y="440" font-family="'Syne', 'Impact', sans-serif" font-weight="900" font-size="90" fill="#93c5fd" text-anchor="middle">UW</text>
+        <text x="400" y="490" font-family="'JetBrains Mono', monospace" font-size="18" fill="#ffffff" text-anchor="middle" letter-spacing="6">VARSITY 2024</text>
+      </g>
+    
+
+  <!-- Main Typographic Name -->
+  <g transform="translate(400, 720)">
+    <text x="0" y="0" font-family="'Space Grotesk', 'Syncopate', sans-serif" font-weight="900" font-size="46" fill="url(#textGrad)" text-anchor="middle" letter-spacing="3">ACADEMICALLY TIRED</text>
+    <text x="0" y="42" font-family="'JetBrains Mono', monospace" font-size="15" fill="#a1a1aa" text-anchor="middle" letter-spacing="4">UNIVERSITY OF LATE NIGHT CRAMMING</text>
+  </g>
+
+  <!-- Industrial Barcode & Bottom Signature -->
+  <rect x="260" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="270" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="280" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="290" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="300" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="310" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="320" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="330" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="340" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="350" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="360" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="370" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="380" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="390" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="400" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="410" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="420" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="430" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="440" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="450" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="460" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="470" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="480" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="490" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="500" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="510" y="820" width="1" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="520" y="820" width="2" height="45" fill="#93c5fd" opacity="0.75"/>
+<rect x="530" y="820" width="4" height="45" fill="#93c5fd" opacity="0.75"/>
+  <text x="400" y="890" font-family="'JetBrains Mono', monospace" font-size="13" fill="#93c5fd" text-anchor="middle" letter-spacing="6">UNCOMMON weaR // UW-034</text>
+  <text x="400" y="930" font-family="'Inter', sans-serif" font-size="12" fill="#71717a" text-anchor="middle" letter-spacing="2">CREATED BY YOU. CRAFTED BY US.</text>
+</svg>

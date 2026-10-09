@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 950" width="800" height="950">
+  <defs>
+    <linearGradient id="bgStudio" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18181c"/>
+      <stop offset="100%" stop-color="#0c0d10"/>
+    </linearGradient>
+    <filter id="teeShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="25" stdDeviation="35" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+    <linearGradient id="fabricCrease" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06"/>
+      <stop offset="50%" stop-color="#000000" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Studio Background -->
+  <rect width="800" height="950" fill="url(#bgStudio)"/>
+  
+  <!-- Subtle Studio Grid -->
+  <circle cx="400" cy="460" r="320" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.04"/>
+  <circle cx="400" cy="460" r="420" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.02"/>
+
+  <!-- T-SHIRT SILHOUETTE (Oversized Boxy Fit) -->
+  <g filter="url(#teeShadow)">
+    <!-- Base Tee Body -->
+    <path d="M 270 120 
+             C 320 145 480 145 530 120 
+             L 660 210 
+             L 590 320 
+             L 535 285 
+             L 535 830 
+             C 450 840 350 840 265 830 
+             L 265 285 
+             L 210 320 
+             L 140 210 
+             Z" 
+          fill="#0e0f12" stroke="#27272a" stroke-width="2"/>
+
+    <!-- Collar Ribbing -->
+    <path d="M 330 125 C 360 160 440 160 470 125 C 440 145 360 145 330 125 Z" fill="#1f2024" stroke="#3f3f46" stroke-width="1.5"/>
+    <path d="M 320 123 C 360 168 440 168 480 123" fill="none" stroke="#3f3f46" stroke-width="2" opacity="0.7"/>
+
+    <!-- Shoulder Stitches & Drop Seams -->
+    <path d="M 270 120 L 140 210" stroke="#27272a" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <path d="M 530 120 L 660 210" stroke="#27272a" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+    <!-- Sleeve Hem Seams -->
+    <path d="M 140 210 L 210 320" stroke="#27272a" stroke-width="1.5"/>
+    <path d="M 660 210 L 590 320" stroke="#27272a" stroke-width="1.5"/>
+
+    <!-- Bottom Hem -->
+    <path d="M 265 805 C 350 815 450 815 535 805" stroke="#27272a" stroke-width="2" fill="none" stroke-dasharray="6 3"/>
+
+    <!-- Subtle Fabric Creases Overlay -->
+    <path d="M 270 290 Q 320 340 310 420 Q 330 520 290 620" fill="none" stroke="url(#fabricCrease)" stroke-width="12" opacity="0.3"/>
+    <path d="M 530 290 Q 480 340 490 420 Q 470 520 510 620" fill="none" stroke="url(#fabricCrease)" stroke-width="12" opacity="0.3"/>
+  </g>
+
+  <!-- PRINT EMBEDDED ON TEE CHEST -->
+  <g transform="translate(290, 230) scale(0.275)">
+    <!-- Clipped or scaled Artwork frame on chest -->
+    <rect width="800" height="1000" rx="12" fill="#0a0a0c" stroke="#ffffff" stroke-width="2" opacity="0.9"/>
+    
+    <!-- Chest print artwork graphics miniature -->
+    <text x="400" y="160" font-family="'JetBrains Mono', monospace" font-size="34" font-weight="bold" fill="#ffffff" text-anchor="middle">UW-095</text>
+    <circle cx="400" cy="420" r="160" fill="none" stroke="#ffffff" stroke-width="6"/>
+    <circle cx="400" cy="420" r="40" fill="#ffffff"/>
+    <text x="400" y="680" font-family="'Space Grotesk', sans-serif" font-weight="900" font-size="62" fill="#ffffff" text-anchor="middle">NEVER SETTLE</text>
+    <text x="400" y="750" font-family="'JetBrains Mono', monospace" font-size="28" fill="#ffffff" text-anchor="middle">THE NEXT LEVEL ALWAYS WAITS</text>
+    <line x1="250" y1="840" x2="550" y2="840" stroke="#ffffff" stroke-width="4"/>
+  </g>
+
+  <!-- Hanging Brand Tag / Clamp Badge -->
+  <g transform="translate(520, 720)">
+    <rect x="0" y="0" width="38" height="52" fill="#000000" stroke="#3f3f46" stroke-width="1"/>
+    <rect x="0" y="44" width="38" height="8" fill="#ffffff"/>
+    <text x="19" y="26" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">UW</text>
+  </g>
+
+  <!-- Bottom Visual Info Badge -->
+  <rect x="50" y="875" width="700" height="50" rx="8" fill="#121317" stroke="#27272a" stroke-width="1"/>
+  <text x="75" y="906" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="bold" fill="#ffffff">UW-095</text>
+  <text x="175" y="906" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#f4f4f5">NEVER SETTLE</text>
+  <text x="725" y="906" font-family="'Inter', sans-serif" font-size="12" fill="#a1a1aa" text-anchor="end">Oversized Heavyweight Cotton (240 GSM)</text>
+</svg>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1014"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="1000" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Industrial Framing & Grid Lines -->
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.12"/>
+  <rect x="52" y="52" width="696" height="896" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.08"/>
+  
+  <!-- Corner Crosshairs -->
+  <path d="M 40 70 L 40 40 L 70 40 M 730 40 L 760 40 L 760 70 M 40 930 L 40 960 L 70 960 M 730 960 L 760 960 L 760 930" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.8"/>
+
+  <!-- Top Metadata Bar -->
+  <text x="70" y="85" font-family="'JetBrains Mono', 'Space Grotesk', monospace" font-size="16" font-weight="700" fill="#38bdf8" letter-spacing="3">UW-088</text>
+  <text x="730" y="85" font-family="'JetBrains Mono', monospace" font-size="14" fill="#a1a1aa" text-anchor="end" letter-spacing="2">MOTIVATION</text>
+
+  <!-- Central Graphic Motif -->
+  
+      <g>
+        <polygon points="400,290 490,460 310,460" fill="none" stroke="#38bdf8" stroke-width="4"/>
+        <polygon points="400,630 490,460 310,460" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.5"/>
+        <circle cx="400" cy="460" r="60" fill="#38bdf8" opacity="0.2"/>
+        <circle cx="400" cy="460" r="15" fill="#38bdf8"/>
+        <line x1="240" y1="460" x2="560" y2="460" stroke="#38bdf8" stroke-width="2" stroke-dasharray="10 5"/>
+      </g>
+    
+
+  <!-- Main Typographic Name -->
+  <g transform="translate(400, 720)">
+    <text x="0" y="0" font-family="'Space Grotesk', 'Syncopate', sans-serif" font-weight="900" font-size="46" fill="url(#textGrad)" text-anchor="middle" letter-spacing="3">MAKE TODAY COUNT</text>
+    <text x="0" y="42" font-family="'JetBrains Mono', monospace" font-size="15" fill="#a1a1aa" text-anchor="middle" letter-spacing="4">NON-REFUNDABLE TIME DEPOSIT</text>
+  </g>
+
+  <!-- Industrial Barcode & Bottom Signature -->
+  <rect x="260" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="270" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="280" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="290" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="300" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="310" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="320" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="330" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="340" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="350" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="360" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="370" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="380" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="390" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="400" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="410" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="420" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="430" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="440" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="450" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="460" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="470" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="480" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="490" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="500" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="510" y="820" width="1" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="520" y="820" width="2" height="45" fill="#38bdf8" opacity="0.75"/>
+<rect x="530" y="820" width="4" height="45" fill="#38bdf8" opacity="0.75"/>
+  <text x="400" y="890" font-family="'JetBrains Mono', monospace" font-size="13" fill="#38bdf8" text-anchor="middle" letter-spacing="6">UNCOMMON weaR // UW-088</text>
+  <text x="400" y="930" font-family="'Inter', sans-serif" font-size="12" fill="#71717a" text-anchor="middle" letter-spacing="2">CREATED BY YOU. CRAFTED BY US.</text>
+</svg>

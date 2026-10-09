@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal — UNCommon weaR</title>
+  <meta name="theme-color" content="#09090b">
+
+  <!-- Google Fonts: Syncopate, Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+  <!-- PIN Authentication Screen -->
+  <div class="pin-screen" id="pinScreen">
+    <div class="pin-card">
+      <div class="pin-logo">
+        <span class="brand-text">UN<span class="brand-accent">Common</span> weaR</span>
+      </div>
+      <h2 class="pin-title">Cart Staff Portal</h2>
+      <p class="pin-subtitle">Enter your 4-digit cart staff PIN to access catalogue administration.</p>
+      
+      <form id="pinForm" class="pin-form">
+        <div class="pin-input-group">
+          <input type="password" id="pinInput" class="pin-input" maxlength="8" placeholder="••••" autocomplete="off" autofocus>
+        </div>
+        <button type="submit" class="btn btn-primary pin-submit-btn">Unlock Portal</button>
+        <p class="pin-hint">Default staff PIN: <code>1337</code></p>
+        <p class="pin-error" id="pinError" style="display: none;">Invalid PIN. Please try again.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Main Application -->
+  <div class="admin-app" id="adminApp" style="display: none;">
+    
+    <!-- Top Admin Header -->
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <a href="/designs" class="back-catalogue-link" title="Open Public Catalogue">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>View Catalogue</span>
+        </a>
+        <div class="admin-brand">
+          <span class="brand-text">UN<span class="brand-accent">Common</span></span>
+          <span class="admin-badge">ADMIN</span>
+        </div>
+      </div>
+
+      <nav class="admin-tabs" id="adminTabs">
+        <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+        <button class="tab-btn" data-tab="designs">Designs (<span id="tabCount">0</span>)</button>
+        <button class="tab-btn" data-tab="bulk">Bulk Upload</button>
+        <button class="tab-btn" data-tab="qr">Cart QR Studio</button>
+        <button class="tab-btn" data-tab="categories">Categories</button>
+      </nav>
+
+      <div class="admin-header-right">
+        <button class="logout-btn" id="logoutBtn" title="Lock admin portal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Lock</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+
+      <!-- ========================================== -->
+      <!-- TAB 1: DASHBOARD & ANALYTICS -->
+      <!-- ========================================== -->
+      <section class="tab-pane active" id="tab-dashboard">
+        <div class="dashboard-header">
+          <div>
+            <h1 class="pane-title">Cart Operations & Analytics</h1>
+            <p class="pane-subtitle">Live anonymous customer metrics captured directly at your printing cart.</p>
+          </div>
+          <button class="btn btn-outline btn-sm" id="refreshStatsBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            <span>Refresh Data</span>
+          </button>
+        </div>
+
+        <!-- Metric Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Total Catalogue Views</span>
+            <span class="stat-value" id="statCatalogueViews">0</span>
+            <span class="stat-sub">Scans & Page Visits</span>
+          </div>
+          <div class="stat-card stat-card-highlight">
+            <span class="stat-label">Code Copy Actions</span>
+            <span class="stat-value" id="statTotalCopies">0</span>
+            <span class="stat-sub">Direct Customer Print Intent</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Total Designs</span>
+            <span class="stat-value" id="statTotalDesigns">0</span>
+            <span class="stat-sub"><span id="statPublished">0</span> Published • <span id="statHidden">0</span> Hidden</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Top Category</span>
+            <span class="stat-value" id="statTopCategory">—</span>
+            <span class="stat-sub">Most explored vibe</span>
+          </div>
+        </div>
+
+        <!-- Analytical Breakdown Grids -->
+        <div class="analytics-breakdown-grid">
+          
+          <!-- Most Copied Designs (Printed) -->
+          <div class="analytics-card">
+            <h3 class="card-heading">Top Copied Codes (Print Orders)</h3>
+            <p class="card-subheading">Designs customers copied most to show the cart crew.</p>
+            <div class="analytics-list" id="topCopiedList"></div>
+          </div>
+
+          <!-- Most Viewed Designs -->
+          <div class="analytics-card">
+            <h3 class="card-heading">Most Explored Designs</h3>
+            <p class="card-subheading">Designs opened in full-screen detail view.</p>
+            <div class="analytics-list" id="topViewedList"></div>
+          </div>
+
+          <!-- Top Searches -->
+          <div class="analytics-card">
+            <h3 class="card-heading">Customer Search Keywords</h3>
+            <p class="card-subheading">What shoppers are actively typing into the search bar.</p>
+            <div class="keywords-cloud" id="topSearchesCloud"></div>
+          </div>
+
+          <!-- Category Popularity -->
+          <div class="analytics-card">
+            <h3 class="card-heading">Category Popularity</h3>
+            <p class="card-subheading">Breakdown by shopper interest.</p>
+            <div class="category-bars" id="categoryBars"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: DESIGN MANAGEMENT -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-designs">
+        <div class="pane-action-bar">
+          <div class="search-filter-row">
+            <input type="text" id="adminSearchInput" class="admin-input" placeholder="Filter by code, name, category...">
+            <select id="adminCatFilter" class="admin-select">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="openAddModalBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Single Design</span>
+          </button>
+        </div>
+
+        <!-- Designs Table -->
+        <div class="table-container">
+          <table class="designs-table">
+            <thead>
+              <tr>
+                <th width="70">Preview</th>
+                <th width="100">Code</th>
+                <th>Design Name</th>
+                <th width="120">Category</th>
+                <th width="140">Style / Mood</th>
+                <th width="70">Views</th>
+                <th width="70">Copies</th>
+                <th width="80">Featured</th>
+                <th width="80">Status</th>
+                <th width="110" class="text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="designsTableBody">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: BULK UPLOAD & CSV IMPORT -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-bulk">
+        <div class="bulk-upload-container">
+          
+          <!-- Bulk Multi-Image Uploader -->
+          <div class="bulk-section-card">
+            <div class="section-title-row">
+              <div>
+                <h2 class="section-title">Bulk Artwork Image Upload</h2>
+                <p class="section-subtitle">Drop 10, 20, 50+ artwork images at once. System automatically generates sequential design codes (`UW-XXX`) and formats filenames into titles.</p>
+              </div>
+            </div>
+
+            <div class="bulk-dropzone" id="bulkDropzone">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <h3 class="dropzone-text">Drag & drop multiple design images here</h3>
+              <p class="dropzone-hint">Supports PNG, JPG, WebP, SVG (Up to 50 files)</p>
+              <label class="btn btn-outline dropzone-btn">
+                <span>Browse Files</span>
+                <input type="file" id="bulkFileInput" multiple accept="image/*" style="display: none;">
+              </label>
+            </div>
+
+            <!-- Upload Options Form -->
+            <div class="bulk-options-bar">
+              <div class="input-inline">
+                <label>Default Category:</label>
+                <select id="bulkCategorySelect" class="admin-select"></select>
+              </div>
+              <div class="input-inline">
+                <label>Default Tags:</label>
+                <input type="text" id="bulkTagsInput" class="admin-input" placeholder="streetwear, new, oversized" value="streetwear, new">
+              </div>
+              <button class="btn btn-primary" id="startBulkUploadBtn" disabled>
+                <span>Upload & Generate Designs</span>
+              </button>
+            </div>
+
+            <div class="upload-progress-box" id="uploadProgressBox" style="display: none;">
+              <div class="progress-bar"><div class="progress-fill" id="uploadProgressFill"></div></div>
+              <span id="uploadProgressText">Uploading...</span>
+            </div>
+          </div>
+
+          <!-- CSV / JSON Bulk Import & Export -->
+          <div class="bulk-section-card">
+            <div class="section-title-row">
+              <div>
+                <h2 class="section-title">CSV Import & Export</h2>
+                <p class="section-subtitle">Manage design metadata in spreadsheets or backup the entire 100+ design database.</p>
+              </div>
+            </div>
+
+            <div class="csv-actions-row">
+              <div class="csv-action-box">
+                <h4>Import from CSV</h4>
+                <p>Upload a CSV file containing columns: Code, Name, Category, Tags, Style, Mood, Color, Description.</p>
+                <div class="csv-buttons-group">
+                  <label class="btn btn-outline btn-sm">
+                    <span>Select CSV File</span>
+                    <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+                  </label>
+                  <button class="btn btn-ghost btn-sm" id="downloadSampleCsvBtn">Download Sample CSV</button>
+                </div>
+              </div>
+
+              <div class="csv-action-box">
+                <h4>Export Current Catalogue</h4>
+                <p>Download a complete snapshot of all designs, view counts, and copy metrics as a standard CSV.</p>
+                <button class="btn btn-outline btn-sm" id="exportCsvBtn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Export Catalogue CSV</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: CART QR CODE STUDIO -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-qr">
+        <div class="qr-studio-grid">
+          
+          <!-- Left: QR Generator Settings -->
+          <div class="qr-controls-card">
+            <h2 class="section-title">Permanent Cart QR Generator</h2>
+            <p class="section-subtitle">This QR code points permanently to <code>/designs</code>. Customers scanning it at your printing cart will immediately view your digital catalogue.</p>
+
+            <div class="qr-form-group">
+              <label>Target URL:</label>
+              <input type="text" id="qrTargetUrl" class="admin-input" readonly value="">
+              <span class="form-hint">Points directly to your catalogue public view.</span>
+            </div>
+
+            <div class="qr-form-row">
+              <div class="qr-form-group">
+                <label>Contrast Style:</label>
+                <select id="qrStylePreset" class="admin-select">
+                  <option value="black-on-white">High-Contrast (Black on White) — Best for Printing</option>
+                  <option value="lime-on-black">Neon Cyber (Lime on Obsidian) — Brand Aesthetic</option>
+                  <option value="white-on-black">Inverted (White on Black)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Download Buttons -->
+            <div class="qr-download-actions">
+              <button class="btn btn-primary" id="downloadQrSvgBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download Vector SVG</span>
+              </button>
+              <button class="btn btn-outline" id="downloadQrPngBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download High-Res PNG (2000px)</span>
+              </button>
+            </div>
+
+            <!-- Print Counter Display Button -->
+            <div class="qr-print-box">
+              <button class="btn btn-outline print-sign-btn" id="printCounterSignBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span>Generate Print-Ready Cart Table Tent Flyer</span>
+              </button>
+              <p class="form-hint">Opens a formatted, high-DPI display poster designed for acrylic counter stands at your cart.</p>
+            </div>
+          </div>
+
+          <!-- Right: Live QR Preview & Display Stand Mockup -->
+          <div class="qr-preview-card">
+            <h3 class="card-heading">Live Cart QR Preview</h3>
+            
+            <div class="qr-display-frame" id="qrDisplayFrame">
+              <div class="qr-brand-tag">UNCommon weaR</div>
+              <div class="qr-code-image-container">
+                <img id="qrPreviewImg" src="" alt="Cart QR Code" class="qr-preview-image">
+              </div>
+              <div class="qr-caption">SCAN TO EXPLORE 100+ DESIGNS</div>
+              <div class="qr-subtext">SELECT CODE • SHOW TEAM • GET IT PRINTED</div>
+            </div>
+
+            <div class="qr-specs-badge">
+              <span>Permanence: 100% Locked</span> • <span>Error Correction: High (Level H)</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 5: CATEGORIES -->
+      <!-- ========================================== -->
+      <section class="tab-pane" id="tab-categories">
+        <div class="categories-admin-container">
+          <div class="section-title-row">
+            <div>
+              <h2 class="section-title">Manage Catalogue Categories</h2>
+              <p class="section-subtitle">Categories appear as horizontal scrolling filter chips on the customer-facing website.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" id="addCategoryBtn">Add Category</button>
+          </div>
+
+          <div class="category-cards-list" id="categoryCardsList"></div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Single Design Add / Edit Modal -->
+  <div class="admin-modal-overlay" id="designModalOverlay">
+    <div class="admin-modal" role="dialog">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" id="designModalTitle">Add Design</h3>
+        <button class="modal-close" id="closeDesignModalBtn">&times;</button>
+      </div>
+
+      <form id="designForm" class="admin-modal-body">
+        <input type="hidden" id="editDesignId">
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Design Code <span class="required">*</span></label>
+            <input type="text" id="formCode" class="admin-input" placeholder="UW-047" required>
+          </div>
+          <div class="form-group">
+            <label>Design Name <span class="required">*</span></label>
+            <input type="text" id="formName" class="admin-input" placeholder="INTROVERT MODE" required>
+          </div>
+          <div class="form-group">
+            <label>Category <span class="required">*</span></label>
+            <select id="formCategory" class="admin-select" required></select>
+          </div>
+          <div class="form-group">
+            <label>Style</label>
+            <input type="text" id="formStyle" class="admin-input" placeholder="Modern, Minimal, Bold, Street...">
+          </div>
+          <div class="form-group">
+            <label>Mood</label>
+            <input type="text" id="formMood" class="admin-input" placeholder="Chill, Confident, Sarcastic...">
+          </div>
+          <div class="form-group">
+            <label>Color Tone</label>
+            <input type="text" id="formColor" class="admin-input" placeholder="Monochrome, Neon, Pastel...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Artwork Image URL or File Path <span class="required">*</span></label>
+          <input type="text" id="formImage" class="admin-input" placeholder="/assets/designs/UW-047-art.svg" required>
+        </div>
+
+        <div class="form-group">
+          <label>T-Shirt Mockup Image URL</label>
+          <input type="text" id="formMockup" class="admin-input" placeholder="/assets/mockups/UW-047-mockup.svg">
+        </div>
+
+        <div class="form-group">
+          <label>Tags (Comma-separated)</label>
+          <input type="text" id="formTags" class="admin-input" placeholder="introvert, chill, minimal, typography">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="formDescription" class="admin-textarea" rows="2" placeholder="Brief visual description..."></textarea>
+        </div>
+
+        <div class="form-checkbox-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="formFeatured">
+            <span>Mark as Featured (Prioritized in catalogue)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="formPublished" checked>
+            <span>Published (Visible to customers)</span>
+          </label>
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn btn-ghost" id="cancelDesignModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="saveDesignBtn">Save Design</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="adminToastContainer"></div>
+
+  <!-- Admin Controller Script -->
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>
