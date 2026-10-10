@@ -9,8 +9,12 @@ const DATA_DIR = path.join(__dirname, '..', 'data');
 const DB_FILE = path.join(DATA_DIR, 'database.json');
 
 // Ensure data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+  }
+} catch (e) {
+  // Ignored in read-only serverless environment
 }
 
 // In-memory cache
@@ -126,8 +130,29 @@ export async function loadDatabase() {
   return db;
 }
 
+let isLoaded = false;
+let loadPromise = null;
+
+export async function ensureDatabaseLoaded() {
+  if (isLoaded) return db;
+  if (!loadPromise) {
+    loadPromise = (async () => {
+      try {
+        await loadDatabase();
+      } catch (err) {
+        console.error('Error during initial database load:', err);
+      } finally {
+        isLoaded = true;
+      }
+      return db;
+    })();
+  }
+  return loadPromise;
+}
+
 // Save local fallback atomically
 function saveDatabaseLocal() {
+  if (process.env.VERCEL) return; // Skip disk writes in read-only serverless environment
   try {
     const tempFile = `${DB_FILE}.tmp.${Date.now()}`;
     fs.writeFileSync(tempFile, JSON.stringify(db, null, 2), 'utf8');
@@ -136,7 +161,7 @@ function saveDatabaseLocal() {
     try {
       fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), 'utf8');
     } catch (e) {
-      console.error('Fatal local database save error:', e.message);
+      // Ignored in read-only environment
     }
   }
 }

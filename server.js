@@ -30,7 +30,8 @@ import {
   getSettings,
   updateSettings,
   verifyAdminPin,
-  loadDatabase
+  loadDatabase,
+  ensureDatabaseLoaded
 } from './db/store.js';
 import { supabase } from './db/supabaseClient.js';
 
@@ -43,8 +44,12 @@ const PORT = process.env.PORT || 3001;
 // Setup directories
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const UPLOADS_DIR = path.join(__dirname, 'uploads');
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+  }
+} catch (e) {
+  // Ignored in read-only serverless environment
 }
 
 // Multer storage: Use memory storage so we can upload directly to Supabase Storage & local disk
@@ -59,6 +64,24 @@ app.use(compression());
 app.use(cors());
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+
+// Ensure database is populated before handling any request (critical on serverless cold starts)
+app.use(async (req, res, next) => {
+  try {
+    await ensureDatabaseLoaded();
+  } catch (err) {
+    console.error('Database pre-load notice:', err.message);
+  }
+  next();
+});
+
+// Health check endpoints
+app.get('/api', (req, res) => {
+  res.json({ ok: true, name: 'UNCommon weaR API', status: 'online' });
+});
+app.get('/api/health', (req, res) => {
+  res.json({ ok: true, timestamp: new Date().toISOString() });
+});
 
 // Static files
 app.use(express.static(PUBLIC_DIR));
@@ -501,7 +524,7 @@ app.get('*', (req, res) => {
 });
 
 // Start Server (only when run directly, not in Vercel serverless function environment)
-if (process.env.NODE_ENV !== 'test') {
+if (!process.env.VERCEL && process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
     console.log(`====================================================`);
     console.log(`UNCommon weaR Digital Design Catalogue Server`);
